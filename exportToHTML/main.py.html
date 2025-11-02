@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #067d17;}
+.s3 { color: #1750eb;}
+.s4 { color: #0037a6;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">from </span><span class="s1">openai </span><span class="s0">import </span><span class="s1">OpenAI</span>
+
+<span class="s1">client = OpenAI()</span>
+
+<span class="s0">def </span><span class="s1">chat_with_gpt(prompt):</span>
+    <span class="s1">response = client.chat.completions.create(</span>
+        <span class="s1">model=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="s1">,</span>
+        <span class="s1">messages=[{</span><span class="s2">&quot;role&quot;</span><span class="s1">: </span><span class="s2">&quot;user&quot;</span><span class="s1">, </span><span class="s2">&quot;content&quot;</span><span class="s1">: prompt}]</span>
+    <span class="s1">)</span>
+    <span class="s0">return </span><span class="s1">response.choices[</span><span class="s3">0</span><span class="s1">].message.content.strip()</span>
+
+<span class="s0">if </span><span class="s1">__name__ == </span><span class="s2">&quot;__main__&quot;</span><span class="s1">:</span>
+    <span class="s1">print(</span><span class="s2">&quot;Type 'quit' to exit.</span><span class="s4">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+    <span class="s0">while True</span><span class="s1">:</span>
+        <span class="s1">user_input = input(</span><span class="s2">&quot;You: &quot;</span><span class="s1">)</span>
+        <span class="s0">if </span><span class="s1">user_input.lower() </span><span class="s0">in </span><span class="s1">[</span><span class="s2">&quot;quit&quot;</span><span class="s1">, </span><span class="s2">&quot;exit&quot;</span><span class="s1">, </span><span class="s2">&quot;bye&quot;</span><span class="s1">]:</span>
+            <span class="s1">print(</span><span class="s2">&quot;Chatbot: Goodbye!&quot;</span><span class="s1">)</span>
+            <span class="s0">break</span>
+
+        <span class="s1">reply = chat_with_gpt(user_input)</span>
+        <span class="s1">print(</span><span class="s2">&quot;Chatbot:&quot;</span><span class="s1">, reply)</span>
+
+
+
+</pre>
+</body>
+</html>
